@@ -13,26 +13,26 @@ package htmlrepl
 
 import (
 	"encoding/json"
-	"os"
+	"net/http"
 	"strings"
 )
 
 // Replace all HTML Tags
 func Replace(text string) (string, error) {
 
-	// Open json file
-	tags, err := os.Open("files/json/html-tags.json")
+	// Get json file
+	tags, err := http.Get("https://raw.githubusercontent.com/jojojojonas/htmlrepl/master/files/json/html-tags.json")
 	if err != nil {
 		return "", err
 	}
 
 	// Close file
-	defer tags.Close()
+	defer tags.Body.Close()
 
 	// Decode json file
 	var decode []string
 
-	err = json.NewDecoder(tags).Decode(&decode)
+	err = json.NewDecoder(tags.Body).Decode(&decode)
 	if err != nil {
 		return "", err
 	}
