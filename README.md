@@ -5,7 +5,7 @@ With this small library you can remove all HTML tags from a string. How this wor
 ## Install
 
 ```console
-go get github.com/jojojojonas/htmlrepl
+go get github.com/gowizzard/htmlrepl
 ```
 
 ## How to use?
